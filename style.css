@@ -20,7 +20,7 @@ body{
     margin-top: 1em;
     background-color: rgba(255, 255, 255, 0.308);
     width: 90vw;
-    height:95vh;
+    min-height:95vh;
     border-radius: 1em;
 
     display: flex;
@@ -96,5 +96,11 @@ button{
         text-align: center;
         
     }
-    
+
+}
+@media (max-height:450px){
+    body{
+        background-color: white;
+    }
+
 }
