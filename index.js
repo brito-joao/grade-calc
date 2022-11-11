@@ -20,7 +20,12 @@ function calcMain(out){
     var testes_avg=Avg(testes);
     
     const teste_div=document.querySelector(".avg-out-1");
-    teste_div.innerHTML=`Testes<input type="number"  value="75" name="" id="" placeholder="75"  class="percent">% x̄=${testes_avg.toFixed(2)}`;
+    
+    const testes_perc=document.querySelector(".avg-out-1 .percent").value;
+    teste_div.innerHTML=`Testes<input type="number"  value=${testes_perc} name="" id="" placeholder="75"  class="percent">% x̄=${testes_avg.toFixed(2)}`;
+
+    
+    console.log(testes_perc);
 
 
     //fichas -- other activieis** correct 
@@ -28,7 +33,9 @@ function calcMain(out){
     var fichas_avg=Avg(fichas);
     
     const fichas_div=document.querySelector(".avg-out-2");
-    fichas_div.innerHTML=`Fichas<input type="number" name="" id="" value="15" placeholder="15" class="percent">% x̄=${fichas_avg.toFixed(2)}`;
+
+    const fichas_perc=document.querySelector(".avg-out-2 .percent").value;
+    fichas_div.innerHTML=`Fichas<input type="number" name="" id="" value=${fichas_perc} placeholder="15" class="percent">% x̄=${fichas_avg.toFixed(2)}`;
 
 
     //comportamentos --- behaviour
@@ -37,10 +44,15 @@ function calcMain(out){
     var comp_avg=Avg(comportamentos);
     
     const comp_div=document.querySelector(".avg-out-3");
-    comp_div.innerHTML=`Comportamento<input type="number" name="" id="" value="10" class="percent" placeholder="20">% x̄=${comp_avg.toFixed(2)}`
+
+    const comp_perc=document.querySelector(".avg-out-3 .percent").value;
+    comp_div.innerHTML=`Comportamento<input type="number" name="" id="" value=${comp_perc} class="percent" placeholder="20">% x̄=${comp_avg.toFixed(2)}`
 
     //nota final -- final result
-    let grade=Math.floor(Math.random()*20);
+
+    
+
+    let grade=Math.floor(finalGrade(testes_avg,testes_perc,fichas_avg,fichas_perc,comp_avg,comp_perc));
     var color_grade=gradeColor(grade);
     grade_p.style=`color:${color_grade}`;
     grade_p.innerText="Sua Nota: "+grade;
@@ -77,4 +89,14 @@ function Avg(array){
         return total;
     }
     
+}
+
+function finalGrade(testeAvg,testePerc,fichasAvg,fichasPerc,compAvg,compPerc,){
+    total_perc=toPercentage(testeAvg,testePerc)+toPercentage(fichasAvg,fichasPerc)+toPercentage(compAvg,compPerc);
+    return (total_perc*20)/100;
+}
+
+
+function toPercentage(number,percent){
+    return (number*percent)/20;
 }

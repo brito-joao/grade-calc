@@ -55,6 +55,7 @@ input{
     
 
 }
+
 .percent{
     height: 1.1em;
     
@@ -70,6 +71,8 @@ button{
     font-size: 0.75em;
     border-radius: 1em;
     margin-right: 0.4em;
+    text-align: center;
+    
 }
 
 .grid-span-2{
